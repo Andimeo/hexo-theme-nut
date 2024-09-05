@@ -3,12 +3,13 @@ menu:
 - name: Archives
   path: /archives
   logo: archive
-- name: Categories
-  path: /categories
-  logo: folder
-- name: Tags
-  path: /tags
-  logo: tags
+# To enable categories or tags, add a new page and assign the layout to "categories" or "tags"
+# - name: Categories
+#   path: /categories
+#   logo: folder
+# - name: Tags
+#   path: /tags
+#   logo: tags
 - name: About
   path: /about
   logo: user
@@ -19,8 +20,8 @@ rss: /atom.xml
 excerpt_link: Read More
 fancybox: true
 
-pages:
-- about
+# pages:
+# - about
 
 # Sidebar
 sidebar: right
