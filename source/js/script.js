@@ -7,9 +7,32 @@
     $('.article-share-box.on').removeClass('on');
   }).on('click', '.article-share-link', function(e){
     e.stopPropagation();
-
+    function ensureHttps(url) {
+      if (typeof url !== 'string') return url;
+      
+      // Check if it's a relative URL
+      if (url.indexOf('//') === -1) {
+        return url; // Return relative URLs unchanged
+      }
+      
+      // Parse the URL
+      try {
+        const parsedUrl = new URL(url);
+        
+        // Only change the protocol if it's currently http
+        if (parsedUrl.protocol === 'http:') {
+          parsedUrl.protocol = 'https:';
+        }
+        
+        return parsedUrl.toString();
+      } catch (e) {
+        // If URL parsing fails, return the original URL
+        console.warn('Invalid URL:', url);
+        return url;
+      }
+    }
     var $this = $(this),
-      url = $this.attr('data-url'),
+      url = ensureHttps($this.attr('data-url')),
       encodedUrl = encodeURIComponent(url),
       id = 'article-share-box-' + $this.attr('data-id'),
       title = $this.attr('data_title'),
@@ -27,9 +50,9 @@
       var html = [
         '<div id="' + id + '" class="article-share-box">',
           '<div class="article-share-links">',
-            '<a href="http://v.t.sina.com.cn/share/share.php?url=' + encodedUrl + '&title=' + summary + '" class="article-share-weibo" target="_blank" title="Weibo"></a>',
-            '<a href="http://widget.renren.com/dialog/share?resourceUrl=' + encodedUrl + '&title=' + title + '&description=' + summary + '" class="article-share-renren" target="_blank" title="Renren"></a>',
-            '<a href="https://plus.google.com/share?url=' + encodedUrl + '" class="article-share-google" target="_blank" title="Google+"></a>',
+            '<a href="https://twitter.com/intent/tweet?url=' + encodedUrl + '&text=' + encodeURIComponent(title) + '" class="article-share-twitter" target="_blank" title="Twitter"></a>',
+            '<a href="https://www.facebook.com/sharer/sharer.php?u=' + encodedUrl + '" class="article-share-facebook" target="_blank" title="Facebook"></a>',
+            '<a href="https://www.linkedin.com/shareArticle?mini=true&url=' + encodedUrl + '&title=' + encodeURIComponent(title) + '&summary=' + encodeURIComponent(summary) + '" class="article-share-linkedin" target="_blank" title="LinkedIn"></a>',
           '</div>',
         '</div>'
       ].join('');
