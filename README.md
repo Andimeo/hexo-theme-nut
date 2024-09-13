@@ -4,6 +4,8 @@ A refined Hexo theme, originally crafted by [seff](https://github.com/seff). Unf
 
 I've taken the initiative to fork this theme and implement several modifications, ensuring its compatibility with the latest hexo-cli framework. It's worth noting that some of the code may not adhere to current language standards, as I'm not well-versed in JavaScript or CSS. The updates were made with the assistance of cursorAI.
 
+Preview Site: [https://andimeo.us.kg](https://andimeo.us.kg)
+
 Below, you'll find the original README.md from seff's repository. Please use it as a reference, keeping in mind that numerous changes have been made since then.
 
 > # nut
